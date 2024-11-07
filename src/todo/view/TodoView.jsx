@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { startNewTodo, startToggleTodo, startDeletingTodos, startLoadingTodos, startArchiveTodo, startUnarchiveTodo, startAddDefaultTodos } from '../../store/todos/thunk';
+import { startNewTodo, startToggleTodo, startDeletingTodos, startLoadingTodos, startArchiveTodo, startUnarchiveTodo } from '../../store/todos/thunk';
 import Swal from 'sweetalert2';
 import { AppBar, Tabs, Tab, Typography, IconButton, Container, Box, Collapse, Button } from '@mui/material';
 import { TodoForm, TodoList, TodoStats } from '../components/';
@@ -55,9 +55,6 @@ export const TodoView = () => {
     });
   };
 
-  const addDefaultTodos = () => {
-    dispatch(startAddDefaultTodos());
-  };
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const pendingTodos = todos.length - completedTodos;
@@ -76,9 +73,6 @@ export const TodoView = () => {
 
         <TodoForm onAddTodo={addTodo} />
 
-        <Button onClick={addDefaultTodos} variant="contained" color="primary">
-          Añadir Todos por defecto
-        </Button>
 
         <TodoList
           todos={todos}
