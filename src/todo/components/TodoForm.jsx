@@ -15,13 +15,14 @@ export const TodoForm = ({ onAddTodo }) => {
       setError('El campo de tarea no puede estar vacío.');
       return;
     }
-    onAddTodo(newTodo, category); 
+    onAddTodo(newTodo, category);
     setNewTodo('');
     setCategory('estudio');
     setError('');
   };
 
   const handleOpenDialog = () => {
+    console.log("Abriendo el modal...");
     setDialogOpen(true);
   };
 
@@ -55,6 +56,21 @@ export const TodoForm = ({ onAddTodo }) => {
         }}
       >
         <Add />
+      </Button>
+
+      <Button
+        onClick={handleOpenDialog}
+        variant="contained"
+        sx={{
+          minWidth: '20px',
+          borderRadius: '50px',
+          padding: 2,
+          '&:hover': {
+            backgroundColor: 'secondary.main',
+          },
+        }}
+      >
+        Añadir Todos por defecto
       </Button>
 
       <DefaultTodoDialog open={dialogOpen} onClose={handleCloseDialog} />
